@@ -8,12 +8,37 @@ var VoteContract = contract(voteArtifacts)
 
 window.App = {
     // called when web3 is set up
-    start: function() {
-        VoteContract.setProvider(window.web3.currentProvider)
-        VoteContract.defaults({from: window.web3.eth.accounts[0], gas:6721975})
-        
+    start: function() { 
+      // setting up contract providers and transaction defaults for ALL contract instances
+      VoteContract.setProvider(window.web3.currentProvider)
+      VoteContract.defaults({from: window.web3.eth.accounts[0],gas:6721975})
+  
+      // creates an VotingContract instance that represents default address managed by VotingContract
+      VoteContract.deployed().then(function(instance){
+  
+        // calls getNumOfCandidates() function in Smart Contract, 
+        // this is not a transaction though, since the function is marked with "view" and
+        // truffle contract automatically knows this
+        instance.getNumOfCandidates().then(function(numOfCandidates){
+  
+            for (var i = 0; i < numOfCandidates; i++ ){
+                // gets candidates and displays them
+                instance.getCandidate(i).then(function(data){
+                $("#candidate-box").append(`<div class="form-check"><input class="form-check-input" type="checkbox" value="" id=${data[0]}><label class="form-check-label" for=${data[0]}>${window.web3.toAscii(data[1])}</label></div>`)
+                })
+            }
+            // sets global variable for number of Candidates
+            // displaying and counting the number of Votes depends on this
+            window.numOfCandidates = numOfCandidates 
+        })
+      })
+    },
+  
+    // Function that is called when user clicks the "vote" button
+    vote: function() {
+      
     }
-}
+  }
 
 
 
