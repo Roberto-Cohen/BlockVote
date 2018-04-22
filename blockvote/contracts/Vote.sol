@@ -10,7 +10,7 @@ contract Vote {
     }
 
     struct Voter {
-        bytes32 uid;
+        address uid;
         uint candidateId;
     }
 
@@ -26,7 +26,7 @@ contract Vote {
         NewCandidate(candidateId);
     }
 
-    function userVote(bytes32 uid, uint candidateId) public {
+    function userVote(address uid, uint candidateId) public {
         uint voterId = numOfVoters;
         voterList[voterId] = Voter(uid, candidateId);
         numOfVoters++;
