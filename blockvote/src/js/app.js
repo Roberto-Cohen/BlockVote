@@ -24,7 +24,7 @@ window.App = {
             for (var i = 0; i < numOfCandidates; i++ ){
                 // gets candidates and displays them
                 instance.getCandidate(i).then(function(data){
-                
+                    // Display candidate on html page
                 })
             }
             // sets global variable for number of Candidates
