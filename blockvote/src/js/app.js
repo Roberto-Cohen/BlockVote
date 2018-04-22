@@ -24,7 +24,7 @@ window.App = {
             for (var i = 0; i < numOfCandidates; i++ ){
                 // gets candidates and displays them
                 instance.getCandidate(i).then(function(data){
-                $("#candidate-box").append(`<div class="form-check"><input class="form-check-input" type="checkbox" value="" id=${data[0]}><label class="form-check-label" for=${data[0]}>${window.web3.toAscii(data[1])}</label></div>`)
+                
                 })
             }
             // sets global variable for number of Candidates
@@ -36,7 +36,13 @@ window.App = {
   
     // Function that is called when user clicks the "vote" button
     vote: function() {
-      
+        // Comes from html page: var CandidateID = something
+
+        // Actually voting for the Candidate using the Contract and displaying "Voted"
+        VotingContract.deployed().then(function(instance){
+            instance.vote(uid,parseInt(candidateID)).then(function(result){
+            })
+        })
     }
   }
 
