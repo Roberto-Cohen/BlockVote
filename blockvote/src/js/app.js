@@ -1,3 +1,22 @@
+// Import libraries we need.
+import { default as Web3} from "web3"
+import { default as contract } from "truffle-contract"
+
+// get build artifacts from compiled smart contract and create the truffle contract
+import voteArtifacts from "../../build/contracts/Vote.json"
+var VoteContract = contract(voteArtifacts)
+
+window.App = {
+    // called when web3 is set up
+    start: function() {
+        VoteContract.setProvider(window.web3.currentProvider)
+        VoteContract.defaults({from: window.web3.eth.accounts[0], gas:6721975})
+        
+    }
+}
+
+
+
 // When the page loads, we create a web3 instance and set a provider. We then set up the app
 window.addEventListener("load", function() {
     // Is there an injected web3 instance?
