@@ -13,9 +13,24 @@ contract Vote {
         uint candidateId;
     }
 
-    mapping
+    uint numOfVoters;
+    uint numOfCandidates = 2;
+    mapping (uint => Candidate) candidateList;
+    mapping (uint => Voter) voterList;
 
-    function vote(uint candidateId) public returns (uint) {
 
+    function vote(bytes32 uid, uint candidateId) public {
+        uint voterId = numOfVoters + 1;
+        voterList[voterId] = Voter(uid, candidateId);
+    }
+
+    function candidateNumOfVotes(uint candidateId) public view returns (uint) {
+        uint candidateVotes = 0;
+        for (uint i = 0; i < numOfVoters; i++) {
+            if (voterList[i].candidateId == candidateId) {
+                candidateVotes++;
+            }
+        }
+        return candidateVotes;
     }
 }
