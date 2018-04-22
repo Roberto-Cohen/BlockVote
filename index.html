@@ -24,18 +24,17 @@
 			</ul>
 		</div>
 		<div id="welcome">
-			<div class="row" style="padding-top:8em">
+			<div class="row" style="padding-top:12em">
 				<div class="col s12">
 					<div class="center-align">
-						<p style="font-size:3em;line-height:0px;">BlockVote</p>
-						<!--  <img src="http://www.blueskyautism.com/wp-content/uploads/2016/05/placeholder-logo.jpg" alt="logo" style="width:500px"/>  -->
+						<img src="./zz_visual_assets/index.svg" alt="logo" style="width:500px"/>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
 					<div class="center-align">
-						<button class="waves-effect waves-light btn-large" onclick="jumpToTab(2);">
+						<button class="indigo waves-effect waves-light btn-large" onclick="jumpToTab(2);">
 							<p style="font-size:2em;line-height:0px;">Start</p>
 						</button>
 					</div>
@@ -81,13 +80,13 @@
 							<div style="padding-top: 20px;">
 								<div class="row  center-align">
 									<label class="black-text col s12">
-								        <input name="candidate" type="radio" checked />
+								        <input name="candidate" value="0" type="radio"/>
 								        <span style="font-size: 24px;">Hillary Clinton</span>
 						      </label>
 								</div>
 								<div class="row center-align">
 									<label class="black-text col s12">
-								        <input name="candidate" type="radio" />
+								        <input name="candidate" value="1"  type="radio" />
 								        <span style="font-size: 24px;">Donald Trump</span>
 						      </label>
 								</div>
@@ -105,7 +104,7 @@
 	<div id="finish" class="col s12">
 		<div class="container center-align" style = "padding-top: 100px">
 			<h1>Thanks For Voting!</h1>
-			<button id = "submitbutton" class="btn-large waves-effect waves-light">Submit
+			<button id = "submitbutton" class="indigo btn-large waves-effect waves-light">Submit
 		    <i class="material-icons right">send</i>
 		  </button>
 		</div>
@@ -116,8 +115,9 @@
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 	<script type="text/javascript" src="materialize/js/init.js"></script>
+	<script src="blockvote/src/js/app.js"></script>
 	<script type="text/javascript" src="submit_callback.js"></script>
 
 </body>
-	<script src="blockvote/src/js/app.js"></script>
+
 </html>
