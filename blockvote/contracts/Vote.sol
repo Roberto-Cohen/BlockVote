@@ -2,6 +2,8 @@ pragma solidity ^0.4.18;
 
 contract Vote {
 
+    event NewCandidate(uint candidateId);
+
     struct Candidate {
         bytes32 name;
         bytes32 party;
@@ -21,6 +23,7 @@ contract Vote {
         uint candidateId = numOfCandidates;
         numOfCandidates++;
         candidateList[candidateId] = Candidate(name, party);
+        NewCandidate(candidateId);
     }
 
     function userVote(bytes32 uid, uint candidateId) public {
