@@ -33,4 +33,35 @@ contract Vote {
         }
         return candidateVotes;
     }
+
+    function getNumOfVoters() public view returns (uint) {
+        return numOfVoters;
+    }
+
+    function getNumOfCandidates() public view returns (uint) {
+        return numOfCandidates;
+    }
+
+    function getCandidate(uint candidateId) public view returns (uint, bytes32, bytes32) {
+        return (candidateId, candidateList[candidateId].name, candidateList[candidateId].party);
+    }
+
+    function getLeader() public view returns (uint, uint) {
+        uint numOfVotes = 0;
+        uint winnerId;
+        for (uint i = 0; i < numOfCandidates; i++) {
+            uint currCandidateId = i;
+            uint currNumOfVotes = 0;
+            for (uint x = 0; x < numOfVoters; x++) {
+                if (voterList[x].candidateId == currCandidateId) {
+                    currNumOfVotes++;
+                }
+            }
+            if (currNumOfVotes >= numOfVotes) {
+                numOfVotes = currNumOfVotes;
+                winnerId = currCandidateId;
+            } 
+        }
+        return (winnerId, numOfVotes);
+    }
 }
