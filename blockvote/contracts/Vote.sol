@@ -74,7 +74,11 @@ contract Vote {
     }
 
     function init() public {
-        addCandidate("Hillary Clinton", "Democrats");
-        addCandidate("Donald Trump", "Republicans");
+        if (numOfCandidates == 0) {
+            addCandidate("Hillary Clinton", "Democrats");
+            addCandidate("Donald Trump", "Republicans");
+        }
     }
+
+    
 }
