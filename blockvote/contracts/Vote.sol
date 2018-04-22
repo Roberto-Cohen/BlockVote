@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
 contract Vote {
 
@@ -23,7 +23,7 @@ contract Vote {
         candidateList[candidateId] = Candidate(name, party);
     }
 
-    function vote(bytes32 uid, uint candidateId) public {
+    function userVote(bytes32 uid, uint candidateId) public {
         uint voterId = numOfVoters;
         voterList[voterId] = Voter(uid, candidateId);
         numOfVoters++;
