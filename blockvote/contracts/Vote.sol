@@ -1,7 +1,6 @@
 pragma solidity ^0.4.17;
 
 contract Vote {
-    address[2] public cadidates;
 
     struct Candidate {
         bytes32 name;
@@ -13,15 +12,21 @@ contract Vote {
         uint candidateId;
     }
 
-    uint numOfVoters;
-    uint numOfCandidates = 2;
+    uint numOfVoters = 0;
+    uint numOfCandidates = 0;
     mapping (uint => Candidate) candidateList;
     mapping (uint => Voter) voterList;
 
+    function addCandidate(bytes32 name, bytes32 party) public {
+        uint candidateId = numOfCandidates;
+        numOfCandidates++;
+        candidateList[candidateId] = Candidate(name, party);
+    }
 
     function vote(bytes32 uid, uint candidateId) public {
-        uint voterId = numOfVoters + 1;
+        uint voterId = numOfVoters;
         voterList[voterId] = Voter(uid, candidateId);
+        numOfVoters++;
     }
 
     function candidateNumOfVotes(uint candidateId) public view returns (uint) {
@@ -63,5 +68,10 @@ contract Vote {
             } 
         }
         return (winnerId, numOfVotes);
+    }
+
+    function init() public {
+        addCandidate("Hillary Clinton", "Democrats");
+        addCandidate("Donald Trump", "Republicans");
     }
 }
