@@ -7,6 +7,8 @@ import "../contracts/Vote.sol";
 contract TestVote {
     Vote vote = Vote(DeployedAddresses.Vote());
 
+    event Test(uint votes);
+
     function testVote() public {
         vote.init();
         uint numGot = vote.getNumOfCandidates();
@@ -16,7 +18,7 @@ contract TestVote {
         
         uint leader;
         uint votes;
-        bytes32 uid = 0x0e986d94eB1c204B63be6E6B57ECf7B3423cd513;
+        address uid = 0x0e986d94eB1c204B63be6E6B57ECf7B3423cd513;
         vote.userVote(uid, 0);
         (leader, votes) = vote.getLeader();
         Assert.equal(leader, 0, "Leader should be 0");

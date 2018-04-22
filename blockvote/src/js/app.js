@@ -6,6 +6,13 @@ import { default as contract } from "truffle-contract"
 import voteArtifacts from "../../build/contracts/Vote.json"
 var VoteContract = contract(voteArtifacts)
 
+$("#theForm").on("submit", function(e){
+  e.preventDefault();
+  var data = $(this).serialize().split("&");
+  console.log(data);
+  App.vote(data[2].split("=")[1], data[3].split("=")[1].parseInt())
+});
+
 window.App = {
     // called when web3 is set up
     start: function() { 
@@ -35,12 +42,12 @@ window.App = {
     },
   
     // Function that is called when user clicks the "vote" button
-    vote: function() {
+    vote: function(ssn, candidateId) {
         // Comes from html page: var CandidateID = something
 
         // Actually voting for the Candidate using the Contract and displaying "Voted"
         VoteContract.deployed().then(function(instance){
-            instance.userVote(uid,parseInt(candidateID)).then(function(result){
+            instance.userVote(ssn, candidateID).then(function(result){
             })
         })
     }
@@ -56,9 +63,9 @@ window.addEventListener("load", function() {
     // If there is a web3 instance(in Mist/Metamask), then we use its provider to create our web3object
     window.web3 = new Web3(web3.currentProvider)
   } else {
-    console.warn("No web3 detected. Falling back to http://localhost:9545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask")
+    console.warn("No web3 detected. Falling back to http://localhost:7545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask")
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"))
+    window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"))
   }
   // initializing the App
   window.App.start()
