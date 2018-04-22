@@ -2,6 +2,8 @@
 <html>
 
 <head>
+	<title>BlockVote</title>
+	<script src="script.js" type="text/javascript" defer></script>
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!--Import materialize.css-->
@@ -15,26 +17,27 @@
 	<div class="row">
 		<div class="col s12">
 			<ul class="tabs">
-				<li class="tab col s3"><a class="active indigo-text indigo lighten-5" href="#welcome">Welcome</a></li>
-				<li class="tab col s3"><a class="indigo-text indigo lighten-5" href="#yourinfo">Your Info</a></li>
-				<li class="tab col s3"><a class="indigo-text indigo lighten-5" href="#vote">Vote</a></li>
-				<li class="tab col s3"><a class="indigo-text indigo lighten-5" href="#finish">Finish</a></li>
+				<li class="tab col s3" id="tab1" onclick="goToTab(1)"><a class="active indigo-text indigo lighten-5" href="#welcome">Welcome</a></li>
+				<li class="tab col s3 disabled" id="tab2" onclick="goToTab(2)"><a class="indigo-text indigo lighten-5" href="#yourinfo">Your Info</a></li>
+				<li class="tab col s3 disabled" id="tab3" onclick="goToTab(3)"><a class="indigo-text indigo lighten-5" href="#vote">Vote</a></li>
+				<li class="tab col s3 disabled" id="tab4"><a class="indigo-text indigo lighten-5" href="#finish">Finish</a></li>
 			</ul>
 		</div>
-		<div id="welcome" class="col s12">
-			<div class="row" style="padding-top:6em">
+		<div id="welcome">
+			<div class="row" style="padding-top:8em">
 				<div class="col s12">
 					<div class="center-align">
-						<img src="http://www.blueskyautism.com/wp-content/uploads/2016/05/placeholder-logo.jpg" alt="logo" style="width:500px" />
+						<p style="font-size:3em;line-height:0px;">BlockVote</p>
+						<!--  <img src="http://www.blueskyautism.com/wp-content/uploads/2016/05/placeholder-logo.jpg" alt="logo" style="width:500px"/>  -->
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
 					<div class="center-align">
-						<a class="btn" style="width:12em;height:6em">
-							<p style="font-size:3em;line-height:0px;">Start</p>
-						</a>
+						<button class="waves-effect waves-light btn-large" onclick="jumpToTab(2);">
+							<p style="font-size:2em;line-height:0px;">Start</p>
+						</button>
 					</div>
 				</div>
 			</div>
