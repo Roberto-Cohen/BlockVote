@@ -40,7 +40,7 @@ window.App = {
 
         // Actually voting for the Candidate using the Contract and displaying "Voted"
         VotingContract.deployed().then(function(instance){
-            instance.vote(uid,parseInt(candidateID)).then(function(result){
+            instance.userVote(uid,parseInt(candidateID)).then(function(result){
             })
         })
     }
